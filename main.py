@@ -3,23 +3,21 @@ import socket
 import time
 
 from messenger import Messenger
-from sender import Sender
 from listener import Listener
+from sender import Sender
+
+from main_window import MainWindow
+from PyQt5.QtWidgets import *
 
 def main(args):
-    port = 9999
-    
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect(('127.0.0.1', port))
-    print("[+] Connected ")
+    app = QApplication(sys.argv)
+    app.aboutToQuit.connect(app.deleteLater)
+    window = MainWindow()
+    # client_socket.shutdown(socket.SHUT_WR)
+    #listener.join()
 
-    listener = Listener(client_socket)
-    listener.start()
-    sender = Sender(client_socket)
-    sender.sending_loop()
-
-    client_socket.shutdown(socket.SHUT_WR)
-    listener.join()
+    sys.exit(app.exec())
 
 if __name__ == "__main__":
+    
     main(sys.argv)

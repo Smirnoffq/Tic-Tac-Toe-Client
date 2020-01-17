@@ -51,3 +51,43 @@ class Sender ():
         msg_d = Messenger.decode_data(msg)
 
         return msg_d
+
+    def send_logout_request(self):
+        msg = self.send_and_receive_msg(Messenger.logout_msg())
+        print("Response: ", msg)
+        return msg
+
+    def send_login_request(self, nickname):
+        msg = self.send_and_receive_msg(Messenger.login_msg(nickname))
+        print("Response: ", msg)
+        return msg
+
+    def send_create_game_request(self, name):
+        msg = self.send_and_receive_msg(Messenger.create_game_msg(name))
+        print("Response: ", msg)
+        return msg
+
+    def send_join_game_request(self, id):
+        msg = self.send_and_receive_msg(Messenger.join_game_msg(g_id))
+        print("Response: ", msg)
+        return msg
+
+    def send_make_move_request(self, posX, posY):
+        msg = self.send_and_receive_msg(Messenger.make_move_msg(posX, posY))
+        print("Response: ", msg)
+        return msg
+
+    def send_get_games_request(self, nickname):
+        msg = self.send_and_receive_msg(Messenger.get_games_list_msg())
+        print("Response: ", msg)
+        return msg
+
+    def send_get_players_request(self, nickname):
+        msg = self.send_and_receive_msg(Messenger.get_players_list_msg(name))
+        print("Response: ", msg)
+        return msg
+
+    def send_leave_game_request(self, nickname):
+        msg = self.send_and_receive_msg(Messenger.leave_game_msg())
+        print("Response: ", msg)
+        return msg
