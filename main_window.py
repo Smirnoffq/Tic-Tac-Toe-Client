@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
         self.client_socket.connect(('127.0.0.1', port))
         print("[+] Connected ")
 
-        self.listener = Listener(self.client_socket)
+        self.listener = Listener(self, self.client_socket)
         self.listener.start()
         self.sender = Sender(self.client_socket)
 
@@ -31,6 +31,9 @@ class MainWindow(QMainWindow):
 
         self.login_widget = self.prepareLoginWidget()
         self.central_widget.addWidget(self.login_widget)
+
+        self.lobby_widget = self.prepareLobbyWidget()
+        self.central_widget.addWidget(self.lobby_widget)
 
         self.show()
 
@@ -45,6 +48,11 @@ class MainWindow(QMainWindow):
 
         return login_widget
 
+    def prepareLobbyWidget(self):
+        lobby_widget = LobbyWidget(self)
+
+        return lobby_widget
+
     def login(self):
         nick = self.login_widget.lineEdit.text()
 
@@ -52,11 +60,3 @@ class MainWindow(QMainWindow):
             return ""
 
         response = self.sender.send_login_request(nick)
-
-        if response["status"] == False:
-            self.login_widget.label_2.setText(response["message"])
-            return ""
-        
-        logged_in_widget = LobbyWidget(self)
-        self.central_widget.addWidget(logged_in_widget)
-        self.central_widget.setCurrentWidget(logged_in_widget)
