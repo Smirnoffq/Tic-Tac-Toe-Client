@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from login_widget import LoginWidget
+from lobby_widget import LobbyWidget
 
 import sys
 import socket
@@ -47,8 +48,15 @@ class MainWindow(QMainWindow):
     def login(self):
         nick = self.login_widget.lineEdit.text()
 
-        if nick != "":
-            self.sender.send_login_request(nick)
-        # logged_in_widget = LoggedWidget(self)
-        # self.central_widget.addWidget(logged_in_widget)
-        # self.central_widget.setCurrentWidget(logged_in_widget)
+        if nick == "":
+            return ""
+
+        response = self.sender.send_login_request(nick)
+
+        if response["status"] == False:
+            self.login_widget.label_2.setText(response["message"])
+            return ""
+        
+        logged_in_widget = LobbyWidget(self)
+        self.central_widget.addWidget(logged_in_widget)
+        self.central_widget.setCurrentWidget(logged_in_widget)
