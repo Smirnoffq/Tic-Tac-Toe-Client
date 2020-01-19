@@ -65,17 +65,17 @@ class Sender ():
     def send_create_game_request(self, name):
         self.send_msg(Messenger.create_game_msg(name))
 
-    def send_join_game_request(self, id):
+    def send_join_game_request(self, g_id):
         self.send_msg(Messenger.join_game_msg(g_id))
 
     def send_make_move_request(self, posX, posY):
         self.send_msg(Messenger.make_move_msg(posX, posY))
 
-    def send_get_games_request(self, nickname):
+    def send_get_games_request(self):
         self.send_msg(Messenger.get_games_list_msg())
 
-    def send_get_players_request(self, nickname):
-        self.send_msg(Messenger.get_players_list_msg(name))
+    def send_get_players_request(self):
+        self.send_msg(Messenger.get_players_list_msg())
 
-    def send_leave_game_request(self, nickname):
+    def send_leave_game_request(self):
         self.send_msg(Messenger.leave_game_msg())
