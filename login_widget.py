@@ -78,3 +78,10 @@ class LoginWidget(QWidget):
         self.label_2.setText("")
         self.label.setText("Tic Tac Toe The Game")
         self.pushButton.setText("Login")
+
+        self.pushButton.setStyleSheet("font-size: 30px")
+        self.label.setStyleSheet("font-size: 40px")
+        #self.lineEdit.setStyleSheet("padding: 10px")
+        self.lineEdit.setStyleSheet("font-size: 30px; padding: 10px 20px")
+        self.label_2.setStyleSheet("color: red; font-size: 20px")
+        self.lineEdit.setPlaceholderText("Nickname") 
