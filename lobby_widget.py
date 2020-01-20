@@ -110,3 +110,15 @@ class LobbyWidget(QWidget):
         self.playersLabel.setText("Gracze")
         self.gamesLabel.setText("Gry")
         self.errorLabel.setText("")
+
+        self.gameNameLabel.setStyleSheet("font-size: 20px; margin-top: 10px;")
+        self.createGameButton.setStyleSheet("font-size: 20px; margin-top: 10px; padding: 5px 10px")
+        self.joinGameButton.setStyleSheet("font-size: 20px; margin-top: 10px; padding: 5px 10px")
+        self.gameNameEditLine.setStyleSheet("font-size: 20px; margin-top: 10px; padding: 5px 10px;")
+
+        self.errorLabel.setStyleSheet("font-size: 25px; color: red;")
+
+        self.playersLabel.setStyleSheet("font-size: 15px;")
+        self.gamesLabel.setStyleSheet("font-size: 15px;")
+        self.playersTable.setStyleSheet("font-size: 15px;")
+        self.gamesTable.setStyleSheet("font-size: 15px;")
